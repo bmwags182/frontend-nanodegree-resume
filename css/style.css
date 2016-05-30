@@ -123,6 +123,10 @@ a {
   clear:both;
 }
 
+li.flex-item {
+    display: inline;
+}
+
 .dark-gray {
   background-color: #4a4a4a;
 }
