@@ -74,7 +74,7 @@ var workHist = {
         {
             "name" : "Burger King",
             "position" : "Assistant Manager",
-            "time" : "October 2006 to May 2015",
+            "time" : "October 2006 to May 2013",
             "location" : ["Fenton", "Rolla", "St. Louis", "Arnold"],
             "description" : "My position at Burger King started with me in the drive through. I quickly proved that I was able to handle the fast paced atmosphere and accomplish multiple tasks at the same time and was soon trained on each position in the restaurant though my favorite remained the drive through for a while. After a few months I was promoted to Assistant manager where my duties escalated to managing the money at the end of the night, making sure the store was clean and ready for the crew in the morning, and handling customer complaints. My favorite spot in the store as a manager was the expeditor, I was able to keep track of the orders mostly mentally and and it made it extremely easy for me to remember where each meal went."
         },
@@ -142,7 +142,9 @@ if (bio.skills.length > 0) {
     $("#header").append(formattedSkills);
     
     // console.log("exit loop");
-    for (job in workHist.jobs) {
+    
+};
+for (job in workHist.jobs) {
         $("#workExperience").append(HTMLworkStart);
         var formattedEmployer = HTMLworkEmployer.replace("%data%", workHist.jobs[job].name);
         var formattedTitle = HTMLworkTitle.replace("%data%",workHist.jobs[job].position);
@@ -156,4 +158,43 @@ if (bio.skills.length > 0) {
         $(".work-entry:last").append(formattedDescription);
         
     };
+var project;
+for (project in projects.current) {
+    $("#projects").append(HTMLprojectStart);
+    var projectName = HTMLprojectTitle.replace("%data%", projects.current[project].name);
+    var projectTime = HTMLprojectDates.replace("%data%", projects.current[project].time);
+    var projectDescription = HTMLprojectDescription.replace("%data%", projects.current[project].description);
+    var projectImage = HTMLprojectImage.replace("%data%", projects.current[project].image);
+    $(".project-entry:last").append(projectName);
+    $(".project-entry:last").append(projectTime);
+    $(".project-entry:last").append(projectDescription);
+    $(".project-entry:last").prepend(projectImage);
 };
+
+var school;
+var course;
+for (school in education.schools) {
+    $("#education").append(HTMLschoolStart);
+    var schoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
+    var schoolDates = HTMLschoolDates.replace("%data%", education.schools[school].time);
+    var schoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+    var schoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+    $(".education-entry:last").append(schoolName);
+    $(".education-entry:last").append(schoolDates);
+    $(".education-entry:last").append(schoolLocation);
+    $(".education-entry:last").append(schoolDegree);
+};
+if (education.online.length > 0) {
+    $("#education").append(HTMLonlineClasses);
+    for (course in education.online) {
+        $("#education").append(HTMLschoolStart);
+        var onlineName = HTMLonlineTitle.replace("%data%", education.online[course].course);
+        var onlineSchool = HTMLonlineSchool.replace("%data%", education.online[course].title);
+        var onlineTime = HTMLonlineDates.replace("%data%", education.online[course].time);
+        var onlineURL = HTMLonlineURL.replace("%data%", education.online[course].url);
+        var schoolName = onlineName + onlineSchool;
+        $(".education-entry:last").append(schoolName);
+        $(".education-entry:last").append(onlineTime);
+        $(".education-entry:last").append(onlineURL);
+    };
+}
